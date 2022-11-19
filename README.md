@@ -4,7 +4,7 @@ A new Flutter project that capture image and video; and edit them.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+image and video editing in fluttter.
 
 A few resources to get you started if this is your first Flutter project:
 
