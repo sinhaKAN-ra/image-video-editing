@@ -1,6 +1,6 @@
 # image_and_video_editing
 
-A new Flutter project.
+A new Flutter project that capture image and video; and edit them.
 
 ## Getting Started
 
