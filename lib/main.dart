@@ -1,20 +1,21 @@
 // import 'dart:io';
 
-import 'package:camera/camera.dart';
+// import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:image_and_video_editing/camera_page.dart';
-import 'package:image_and_video_editing/camera_screen.dart';
+import 'package:image_and_video_editing/non-recurring/camera_page.dart';
+import 'package:image_and_video_editing/ui/preview_page.dart';
+// import 'package:image_and_video_editing/recurring/camera_screen.dart';
 // import 'package:image_picker/image_picker.dart';
-List<CameraDescription> cameras = [];
+// List<CameraDescription> cameras = [];
 
-main() async {
+main()  {
   //  Fetch the available cameras before initializing the app.
-  try {
-    WidgetsFlutterBinding.ensureInitialized();
-    cameras = await availableCameras();
-  } on CameraException catch (e) {
-    debugPrint('Error in fetching the cameras: $e');
-  }
+  // try {
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   cameras = await availableCameras();
+  // } on CameraException catch (e) {
+  //   debugPrint('Error in fetching the cameras: $e');
+  // }
   runApp(const MyApp());
 }
 
@@ -29,8 +30,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CameraScreen(),
-
+      // home: const CameraScreen(),
+      // home: const CameraPage(),
+      home: const HomeScreen(),
     );
   }
 }

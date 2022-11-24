@@ -5,7 +5,8 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_and_video_editing/video_replay.dart';
+import 'package:image_and_video_editing/non-recurring/image_page.dart';
+import 'package:image_and_video_editing/non-recurring/video_replay.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({Key? key}) : super(key: key);
@@ -189,16 +190,16 @@ class _CameraPageState extends State<CameraPage> {
   }
 }
 
-class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
-  const DisplayPictureScreen({super.key, required this.imagePath});
+// class DisplayPictureScreen extends StatelessWidget {
+//   final String imagePath;
+//   const DisplayPictureScreen({super.key, required this.imagePath});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('display pic')),
-      extendBodyBehindAppBar: true,
-      body: Image.file(File(imagePath)),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('display pic')),
+//       extendBodyBehindAppBar: true,
+//       body: Image.file(File(imagePath)),
+//     );
+//   }
+// }

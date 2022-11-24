@@ -7,9 +7,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:video_player/video_player.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'main.dart';
+import '../main.dart';
 import 'preview_screen.dart';
-List<CameraDescription> cameras = [];
+// List<CameraDescription> cameras = [];
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -695,7 +695,7 @@ class _CameraScreenState extends State<CameraScreen>
                                                   }
                                                 },
                                           style: TextButton.styleFrom(
-                                            primary: _isVideoCameraSelected
+                                            foregroundColor: _isVideoCameraSelected
                                                 ? Colors.black54
                                                 : Colors.black,
                                             backgroundColor:
@@ -720,7 +720,7 @@ class _CameraScreenState extends State<CameraScreen>
                                             }
                                           },
                                           style: TextButton.styleFrom(
-                                            primary: _isVideoCameraSelected
+                                            foregroundColor: _isVideoCameraSelected
                                                 ? Colors.black
                                                 : Colors.black54,
                                             backgroundColor:

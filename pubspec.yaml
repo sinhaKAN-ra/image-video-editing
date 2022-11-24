@@ -42,6 +42,8 @@ dependencies:
   camera: ^0.10.0+4
   video_player: ^2.4.7
   permission_handler: ^10.2.0
+  image_gallery_saver: ^1.7.1
+  # image_gallery_saver_v3: ^1.0.0
 
 dev_dependencies:
   flutter_test:

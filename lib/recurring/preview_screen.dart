@@ -3,11 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:image_and_video_editing/capture_screen.dart';
+import 'package:image_and_video_editing/recurring/capture_screen.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class PreviewScreen extends StatefulWidget {
   final File imageFile;
@@ -26,7 +27,9 @@ class _PreviewScreenState extends State<PreviewScreen> {
   final GlobalKey _addImageKey = GlobalKey();
   bool isAdd = false;
   late File imagePath;
+
   _capturePng() async {
+
     try {
       
       RenderRepaintBoundary boundary =
@@ -41,9 +44,10 @@ class _PreviewScreenState extends State<PreviewScreen> {
       var bs64 = base64Encode(pngBytes!);
       
       final directory = await getApplicationDocumentsDirectory();
-      imagePath = await File('${directory.path}/container_image.png').create();
+      imagePath = await File('${directory.path}/karan_container_image.png').create();
       await imagePath.writeAsBytes(pngBytes);
 
+      saveImage(pngBytes);
       setState(() {
         isAdd = true;
       });
@@ -51,8 +55,29 @@ class _PreviewScreenState extends State<PreviewScreen> {
     } catch (e) {
       print(e);
     }
-    
   }
+  
+  saveImage(Uint8List bytes) async {
+    final time = DateTime.now()
+        .toIso8601String()
+        .replaceAll('.', '-')
+        .replaceAll(':', '-');
+    final name = "karan_$time";
+    await requestPermission(Permission.storage);
+    await ImageGallerySaver.saveImage(bytes, name: name);
+  }
+
+Future<bool> requestPermission(Permission permission) async {
+  if (await permission.isGranted) {
+    return true;
+  } else {
+    var result = await permission.request();
+    if (result == PermissionStatus.granted) {
+      return true;
+    }
+  }
+  return false;
+}
 
   @override
   Widget build(BuildContext context) {

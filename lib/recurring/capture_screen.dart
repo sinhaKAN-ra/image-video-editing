@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_and_video_editing/preview_screen.dart';
+import 'package:image_and_video_editing/recurring/preview_screen.dart';
 
 class CapturesScreen extends StatelessWidget {
   final List<File> imageFileList;
