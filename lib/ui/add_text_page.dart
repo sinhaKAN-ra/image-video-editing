@@ -17,7 +17,7 @@ class AddTextPage extends StatefulWidget {
   State<AddTextPage> createState() => _AddTextPageState();
 }
 
-class _AddTextPageState extends EditImageViewModel {
+class _AddTextPageState extends EditTextViewModel {
 
   final GlobalKey _addImageKey = GlobalKey();
    Future<File> _capturePng() async {

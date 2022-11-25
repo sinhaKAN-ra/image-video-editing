@@ -9,7 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'edit_widgets.dart';
 
-abstract class EditImageViewModel extends State<AddTextPage> {
+abstract class EditTextViewModel extends State<AddTextPage> {
   TextEditingController textEditingController = TextEditingController();
   TextEditingController creatorText = TextEditingController();
   // ScreenshotController screenshotController = ScreenshotController();
