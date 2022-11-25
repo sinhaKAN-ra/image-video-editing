@@ -5,30 +5,30 @@ import 'package:image_and_video_editing/ui/add_text_page.dart';
 
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:screenshot/screenshot.dart';
+// import 'package:screenshot/screenshot.dart';
 
 import 'edit_widgets.dart';
 
 abstract class EditImageViewModel extends State<AddTextPage> {
   TextEditingController textEditingController = TextEditingController();
   TextEditingController creatorText = TextEditingController();
-  ScreenshotController screenshotController = ScreenshotController();
+  // ScreenshotController screenshotController = ScreenshotController();
 
   List<TextInfo> texts = [];
   int currentIndex = 0;
 
-  saveToGallery(BuildContext context) {
-    if (texts.isNotEmpty) {
-      screenshotController.capture().then((Uint8List? image) {
-        saveImage(image!);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Image saved to gallery.'),
-          ),
-        );
-      }).catchError((err) => print(err));
-    }
-  }
+  // saveToGallery(BuildContext context) {
+  //   if (texts.isNotEmpty) {
+  //     screenshotController.capture().then((Uint8List? image) {
+  //       saveImage(image!);
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(
+  //           content: Text('Image saved to gallery.'),
+  //         ),
+  //       );
+  //     }).catchError((err) => print(err));
+  //   }
+  // }
 
   saveImage(Uint8List bytes) async {
     final time = DateTime.now()

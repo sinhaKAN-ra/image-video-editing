@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/rendering.dart';
+// import 'package:flutter/src/widgets/container.dart';
+// import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_and_video_editing/ui/text_widget.dart';
-import 'package:screenshot/screenshot.dart';
+// import 'package:screenshot/screenshot.dart';
 
 class AddTextPage extends StatefulWidget {
     final List<File> fileList;
@@ -15,12 +18,46 @@ class AddTextPage extends StatefulWidget {
 }
 
 class _AddTextPageState extends EditImageViewModel {
+
+  final GlobalKey _addImageKey = GlobalKey();
+   Future<File> _capturePng() async {
+    // try {
+      RenderRepaintBoundary boundary = _addImageKey.currentContext
+          ?.findRenderObject() as RenderRepaintBoundary;
+
+      ui.Image image = await boundary.toImage(pixelRatio: 1.0);
+      // File file = File(image.);
+
+      // return image;
+
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+
+      var pngBytes = byteData?.buffer.asUint8List();
+      var bs64 = base64Encode(pngBytes!);
+
+      // final directory = await getApplicationDocumentsDirectory();
+      // imagePath = await File('${directory.path}/karan_container_image.png').create();
+      // await imagePath.writeAsBytes(pngBytes);
+
+      File file = File(bs64);
+      return file;
+
+      // // saveImage(pngBytes);
+      // setState(() {
+      //   isAdd = true;
+      // });
+      // return pngBytes;
+    // } catch (e) {
+    //   print(e);
+    // }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar,
-      body: Screenshot(
-        controller: screenshotController,
+      body: RepaintBoundary(
+        key: _addImageKey,
         child: SafeArea(
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.7,
@@ -109,7 +146,7 @@ AppBar get _appBar => AppBar(
                 Icons.save,
                 color: Colors.black,
               ),
-              onPressed: () => saveToGallery(context),
+              onPressed: () => _capturePng(),
               tooltip: 'Save Image',
             ),
             IconButton(
